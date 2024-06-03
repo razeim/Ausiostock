@@ -1,0 +1,6 @@
+<div class=\"mt-20\"><div class=\"px-6 bg-svetfiol/50 border-b border-white flex justify-between  items-center\"><span class=\"text-5xl text-white font-bold py-5\">
+</span> <span class=\"text-3xl text-white font-bold\">
+</span></div><div class=\"py-5  px-5 bg-svetfiol   items-center\"><i class=\" ml-4 fa-regular fa-file-audio text-3xl text-white\"></i> <span class=\" ml-4 text-3xl text-white font-bold\">
+</span> <button type=\"button\" class=\"inline-flex items-center gap-x-2 rounded-md bg-transparent px-3.5 py-2.5 text-sm font-semibold text-gray-400 shadow-sm hover:bg-gray-400 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600\" hx-get=\"
+\" hx-target=\"#body\" hx-swap=\"outerHTML\" hx-push-url=\"true\" hx-headers=\"js:{&#34;token&#34;: getToken()}\" hx-trigger=\"click\"><span class=\"\"><svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"currentColor\" class=\"w-6 h-6\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M9 8.25H7.5a2.25 2.25 0 0 0-2.25 2.25v9a2.25 2.25 0 0 0 2.25 2.25h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25H15M9 12l3 3m0 0 3-3m-3 3V2.25\"></path></svg></span> <span class=\"\">Добавить</span></button></div><div class=\"bg-gradient-to-b from-svetfiol to-temnosin\">
+</div></div>

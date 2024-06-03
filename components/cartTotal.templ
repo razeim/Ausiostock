@@ -1,0 +1,40 @@
+package components
+
+import (
+    "beep/models"
+    "fmt")
+
+func TotalAmount(uploadedFiles []models.Product_User)int {
+    totalAmount := 0 
+    for _, product := range uploadedFiles {
+        totalAmount += product.Price
+    }
+    return totalAmount
+}
+
+templ CartTotal(products []models.Product_User, userID string) {
+    <div id="cartTotal" class="bg-jelt/75 p-4 rounded-md shadow-md text-white fixed top-20 right-10 w-1/4">
+        <h2 class="text-2xl font-bold mb-4">Итоговая информация</h2>
+        <div class="mb-4"  >
+            <span class="text-lg">Товаров в Корзине:</span>
+            <span class="text-xl font-bold ml-2">{ fmt.Sprintf("%d ",  len(products))}</span>
+        </div>
+         <div class="mb-4"  >
+            <span class="text-lg">Общая стоимость:</span>
+            <span class="text-xl font-bold ml-2">{ fmt.Sprintf("%d руб.", TotalAmount(products)) }</span>
+        </div>
+        <div hx-get="/users/updatecart" 
+             hx-trigger="click delay:100ms from:#input-box"
+             hx-target="#cartTotal"
+             hx-headers='js:{"token": getToken()}'>
+        </div>
+            <button 
+            hx-headers='js:{"token": getToken()}'
+            hx-post="/checkout"
+            hx-target="#checkout"
+            hx-swap="innerHTML"
+            class="bg-terakot hover:bg-jelt text-white font-bold py-2 px-4 rounded">
+            Купить
+        </button>
+    </div>
+}

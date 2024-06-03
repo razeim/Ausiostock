@@ -1,0 +1,98 @@
+package components
+
+
+script Player() {
+    let progress = document.getElementById("progress"); 
+    let song = document.getElementById("song");
+    let ctrlIcon = document.getElementById("ctrlIcon");
+
+    song.onloadedmetadata = function(){
+        progress.max = song.duration;
+        progress.value = song.currentTime;
+    }
+    
+    ctrlIcon.addEventListener("click", function (){
+        if(ctrlIcon.classList.contains("fa-pause")){
+            song.pause();
+            ctrlIcon.classList.remove("fa-pause");
+            ctrlIcon.classList.add("fa-play");
+        } else {
+            song.play();
+            ctrlIcon.classList.add("fa-pause");
+            ctrlIcon.classList.remove("fa-play");
+        }
+    });
+
+    if(song.play()){
+        setInterval(()=>{
+            progress.value = song.currentTime;
+        },500);
+    }   
+
+    progress.onchange = function(){
+        song.play();
+        song.currentTime = progress.value;
+        ctrlIcon.classList.add("fa-pause");
+        ctrlIcon.classList.remove("fa-play");
+    }
+
+
+}
+
+templ AudioPlayer() {
+    <div id="audioPlayerContainer" class="fixed bottom-0 left-0 right-0  shadow-lg hidden">
+    <div class="container w-full h-20 bg-svetfiol rounded-md ">
+     <input class="absolute top-0 w-full m-0 h-2 bg-rozov rounded-full" type="range" value="0" id="progress"
+                style="appearance: none; -webkit-appearance: none;"/>
+            <style>
+                input[type=range]::-webkit-slider-runnable-track {
+                    width: 100%;
+                    height: 8px;
+                    background: #E4ADED; /* розов */
+                    border-radius: 5px;
+                }
+                input[type=range]::-webkit-slider-thumb {
+                    -webkit-appearance: none;
+                    appearance: none;
+                    width: 16px;
+                    height: 16px;
+                    background: #B65913; /* терракот */
+                    cursor: pointer;
+                    border-radius: 50%;
+                    margin-top: -4px; /* Центрирование кружка */
+                }
+                input[type=range]:focus {
+                    outline: none;
+                }
+                input[type=range]:focus::-webkit-slider-runnable-track {
+                    background: #CAB9E9; /* пастельфиол */
+                }
+            </style>
+        <div class="music-player flex text-center">
+            <div class="controls  mt-4  w-14 h-14  flex justify-center items-center rounded-full">
+                <i  class="fa fa-play text-terakot text-3xl " id="ctrlIcon"></i>
+            </div>
+            <img id="image" class="w-14   mt-4 h-14 object-cover  ml-10 pb-1 rounded-lg"/>// ссылка на изображение 
+            <div class=" flex   mt-4    pb-1 items-center">
+                  <h1 id="Filename" class="text-2xl"></h1>
+            </div>
+          // тут имя файла
+          <div class="ml-96 w-24 h-13 mt-4  bg-fiol/25 rounded-[20px] flex justify-center items-center">
+             <p id="bpm" class="text-xl"></p>// bpm
+          </div>
+           <div class=" ml-10 h-13  mt-4  w-32 bg-fiol/25 rounded-[25px] flex justify-center items-center">
+              <p id="key" class="text-xl"></p>// тональность
+          </div>
+            
+            <audio  class="" id="song">
+                //<source id="audioSource" src="" type="audio/mpeg"/>
+            </audio>
+            <div  class="absolute  mt-4 inset-y-1 right-0 controls bg-teal-400  w-14 h-14  flex justify-center items-center rounded-full">
+                <i  class="fa-solid fa-xmark text-3xl text-krasn" id="closeBtn" onclick={ ClosePlayer()}></i>
+            </div>
+        </div>
+        
+    </div>
+    </div>
+    @Player()
+}

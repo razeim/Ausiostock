@@ -1,0 +1,29 @@
+package views
+
+import "beep/components"
+
+import "beep/models"
+
+templ Cart(uploadedFiles []models.Product_User, userID string) {
+    @Page(false) {
+        if len(uploadedFiles)==0{
+            <div class="text-center min-h-screen mt-20">
+                    <h1 class="text-3xl text-white font-bold my-4">Корзина пуста</h1>
+                    <button
+                        class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                        hx-get="/sounds" hx-push-url="true" hx-target="#body" hx-swap="outerHTML"  hx-headers='js:{"token": getToken()}'>
+                        Перейти к покупкам
+                    </button>
+                </div>
+        } else {
+        <div class="min-h-screen">
+        <div class="w-2/3 mt-20">
+            <h1 class="text-3xl text-white font-bold text-center my-4">Список продуктов</h1>
+            @components.CartList(uploadedFiles, userID)
+        </div>
+            @components.CartTotal(uploadedFiles, userID)
+        </div>
+        @components.AudioPlayer()
+    }
+    }
+}

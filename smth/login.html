@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Sign Up</title>
+    <!-- Подключаем Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Подключаем библиотеку HTMX -->
+    <script src="https://unpkg.com/htmx.org@1.6.0/dist/htmx.min.js"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="bg-white p-8 rounded shadow-lg max-w-md w-full">
+        <h1 class="text-2xl font-bold mb-4">Login</h1>
+        <form id="loginForm" hx-post="/users/upload" hx-swap="#loginForm" class="space-y-4">
+            <div class="space-y-2">
+                <label for="email" class="block font-medium">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" class="w-full border rounded-md px-3 py-2 focus:outline-none focus:border-blue-500">
+            </div>
+            <div class="space-y-2">
+                <label for="password" class="block font-medium">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" class="w-full border rounded-md px-3 py-2 focus:outline-none focus:border-blue-500">
+            </div>
+            <button type="button" id="loginButton" class="w-full bg-blue-500 text-white font-semibold rounded-md px-4 py-2 hover:bg-blue-600 transition duration-300" onclick="submitForm()">Login</button>
+        </form>
+        <div id="loginResult" class="mt-4"></div> <!-- Этот блок будет обновлен с помощью HTMX -->
+    </div>
+
+    <div class="mt-4 text-center">
+        <p class="text-gray-600">Don't have an account? <a href="/users/signup" class="text-blue-500 hover:underline">Sign Up</a></p>
+    </div>
+
+    <script>
+        function submitForm() {
+            // Получаем значения из полей ввода
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            
+            // Создаем объект JSON с данными
+            var data = {
+                email: email,
+                password: password
+            };
+            
+            // Отправляем POST-запрос на сервер с данными в формате JSON
+            fetch('/users/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Обновляем результат в блоке loginResult
+                document.getElementById("loginResult").innerHTML = JSON.stringify(data);
+                setTimeout(function() {
+                    window.location.href = "/upload";
+                }, 2000);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>

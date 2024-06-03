@@ -1,0 +1,11 @@
+package components
+
+import "beep/models"
+
+templ ProfProdList(products []models.Product) {
+    <div class="grid grid-cols-3 flex flex-wrap py-4 gap-2 m-auto w-2/3">
+        for _, product := range products {
+            @ProfProdTile(&product)
+        } 
+    </div>   
+}

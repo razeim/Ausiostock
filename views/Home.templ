@@ -1,0 +1,63 @@
+package views
+
+templ Home() {
+	@Page(true) {
+		<div class="mx-auto">
+			<div class="container mx-auto  backdrop-hue-rotate-90 px-4 pb-2 bg-fiol text-center">
+				<img src="https://razeim.hb.ru-msk.vkcs.cloud/%D0%91%D0%B5%D0%B7%20%D0%B8%D0%BC%D0%B5%D0%BD%D0%B8-1.png" alt="Описание  изображения" class="rotate-12 w-3/6  h-1/3 mx-auto rounded-lg"/>
+				<h2 class="text-5xl font-bold text-jelt ">Открой мир музыки: </h2>
+				<p class="text-5xl font-bold text-jelt mb-4">покупай, создавай, делись!</p>
+				<a href="/users/login" class="bg-jelt hover:bg-svetfiol text-fiol font-bold py-2 px-4 rounded inline-block">Кнопка</a>
+			</div>
+			<!-- Секция с описанием и кнопкой -->
+			<div class="container mx-auto py-16 px-4 flex items-center justify-center bg-rozov">
+				<div class="w-1/2 mr-4">
+					<img src="https://razeim.hb.ru-msk.vkcs.cloud/SpliceCampaign-Splice-Hero-v2-1-p-1080.webp" alt="Изображение" class="max-w-full h-auto rounded-lg"/>
+				</div>
+				<div class="w-1/2 text-white">
+					<h3 class="text-3xl text-temnosin font-bold mb-4">Название секции</h3>
+					<p class="text-2xl text-temnosin mb-6">Описание текста, которое будет расположено справа от изображения.</p>
+					<a href="/users/signup" class=" hover:bg-temnosin text-jelt bg-terakot font-bold py-2 px-4 rounded">Кнопка</a>
+				</div>
+			</div>
+			<!-- Секция с карточками продюсеров -->
+			<div class="container mx-auto py-16 px-4 bg-pastelfiol">
+				<h2 class="text-3xl font-bold text-terakot mb-8 text-center">Вот что о нас думают именитые продюсеры</h2>
+				<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mx-40">
+					<!-- Карточка продюсера 1 -->
+					<div class="bg-rozov rounded-lg shadow-md overflow-hidden">
+						<img src="https://razeim.hb.ru-msk.vkcs.cloud/artworks-09muB0JEg9xMCzn3-yI5vzA-t500x500.jpg" alt="Producer 1" class="pt-4 w-64 h-64 ml-14 object-cover rounded-full"/>
+						<div class="p-4">
+							<p class="text-lg text-red-500 mb-2">"ДА"</p>
+							<p class="text-sm text-gray-600">- Слава Готлиб</p>
+						</div>
+					</div>
+					<!-- Карточка продюсера 2 -->
+					<div class="bg-golub rounded-lg shadow-md overflow-hidden">
+						<img src="https://razeim.hb.ru-msk.vkcs.cloud/m1000x1000.png" alt="Producer 2" class="w-64 pt-4 h-64 ml-14 object-cover rounded-full"/>
+						<div class="p-4">
+							<p class="text-lg text-gray-800 mb-2">"Норм тут всегда скидки и много хороших звуков"</p>
+							<p class="text-sm text-gray-600">- Арни</p>
+						</div>
+					</div>
+					<!-- Карточка продюсера 3 -->
+					<div class="bg-jelt rounded-lg shadow-md overflow-hidden">
+						<img src="https://razeim.hb.ru-msk.vkcs.cloud/images.jpeg" alt="Producer 3" class="w-64 pt-4 h-64  ml-14 object-cover rounded-full"/>
+						<div class="p-4">
+							<p class="text-lg text-gray-800 mb-2">"Постоянно только тут закупаюсь"</p>
+							<p class="text-sm text-gray-600">- Игорь Крутой</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Секция с полноразмерным изображением и кнопкой -->
+			<div class="relative w-screen h-screen flex justify-center items-center">
+				<img src="https://razeim.hb.ru-msk.vkcs.cloud/Home_Footer_011124-p-1080.webp" alt="Fullscreen Image" class="absolute inset-0 w-100% h-full object-cover"/>
+				<div class="text-white text-center z-10">
+					<h2 class="text-4xl text-golub font-bold mb-6">Начни сейчас и легко разбогатей</h2>
+					<a href="#" class="bg-golub hover:bg-fiol text-white font-bold py-3 px-8 rounded-lg inline-block">Начать</a>
+				</div>
+			</div>
+		</div>
+	}
+}

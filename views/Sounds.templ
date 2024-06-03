@@ -1,0 +1,140 @@
+package views
+
+import "beep/models"
+import "beep/components"
+
+templ Sounds(uploadedFiles []models.Product, userID string, genres []models.Genre, keys []models.Key, instruments []models.Instrument) {
+	@Page(false) {
+		<div class="min-h-screen mt-20">
+			<div class="mx-6 border-b border-white flex items-center">
+				<span class="text-5xl text-white font-bold ">Звуки</span>
+				<div class="relative rounded-2xl bg-white pt-10 pb-8  sm:mx-auto sm:max-w-lg sm:px-10">
+					<div class="mx-auto max-w-md">
+						<form action="" class="relative mx-auto w-max">
+							<input
+								name="name"
+								type="text"
+								hx-get="/users/search"
+								hx-trigger="keyup changed delay:1s"
+								hx-target="#slist"
+								hx-swap="outerHTML"
+								hx-headers='js:{"token": getToken()}'
+								class="peer cursor-pointer relative z-10 h-12 w-12 rounded-full border bg-transparent pl-12 outline-none focus:w-full focus:cursor-text focus:border-rozov focus:pl-16 focus:pr-4"
+							/>
+							<svg xmlns="http://www.w3.org/2000/svg" class="absolute inset-y-0 my-auto h-8 w-12 border-r border-transparent stroke-rozov px-3.5 peer-focus:border-rozov peer-focus:stroke-rozov" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+							</svg>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="flex">
+				<div>
+					<div class="relative inline-flex self-center">
+						<svg class="text-white bg-purple-700 absolute top-0 right-0 m-2 pointer-events-none p-2 rounded" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40px" height="40px" viewBox="0 0 38 22" version="1.1">
+							<title>F09B337F-81F6-41AC-8924-EC55BA135736</title>
+							<g id="ZahnhelferDE—Design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+								<g id="ZahnhelferDE–Icon&Asset-Download" transform="translate(-539.000000, -199.000000)" fill="#ffffff" fill-rule="nonzero">
+									<g id="Icon-/-ArrowRight-Copy-2" transform="translate(538.000000, 183.521208)">
+										<polygon id="Path-Copy" transform="translate(20.000000, 18.384776) rotate(135.000000) translate(-20.000000, -18.384776) " points="33 5.38477631 33 31.3847763 29 31.3847763 28.999 9.38379168 7 9.38477631 7 5.38477631"></polygon>
+									</g>
+								</g>
+							</g>
+						</svg>
+						<select
+							hx-get="/users/search"
+							hx-trigger="change"
+							hx-target="#slist"
+							hx-swap="outerHTML"
+							hx-headers='js:{"token": getToken()}'
+							id="instrument"
+							name="instruments"
+							class="text-2xl font-bold rounded border-2 border-purple-700 text-gray-600 h-14 w-60 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none"
+						>
+							for _, instrument := range instruments {
+								<option value={ instrument.Name }>{ instrument.Name }</option>
+							}
+						</select>
+					</div>
+				</div>
+				<div>
+					<div class="relative inline-flex self-center">
+						<svg class="text-white bg-purple-700 absolute top-0 right-0 m-2 pointer-events-none p-2 rounded" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40px" height="40px" viewBox="0 0 38 22" version="1.1">
+							<title>F09B337F-81F6-41AC-8924-EC55BA135736</title>
+							<g id="ZahnhelferDE—Design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+								<g id="ZahnhelferDE–Icon&Asset-Download" transform="translate(-539.000000, -199.000000)" fill="#ffffff" fill-rule="nonzero">
+									<g id="Icon-/-ArrowRight-Copy-2" transform="translate(538.000000, 183.521208)">
+										<polygon id="Path-Copy" transform="translate(20.000000, 18.384776) rotate(135.000000) translate(-20.000000, -18.384776) " points="33 5.38477631 33 31.3847763 29 31.3847763 28.999 9.38379168 7 9.38477631 7 5.38477631"></polygon>
+									</g>
+								</g>
+							</g>
+						</svg>
+						<select
+							hx-get="/users/search"
+							hx-trigger="change"
+							hx-target="#slist"
+							hx-swap="outerHTML"
+							hx-headers='js:{"token": getToken()}'
+							id="genre"
+							name="genres"
+							class="text-2xl font-bold rounded border-2 border-purple-700 text-gray-600 h-14 w-60 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none"
+						>
+							for _, genre := range genres {
+								<option value={ genre.Name }>{ genre.Name }</option>
+							}
+						</select>
+					</div>
+				</div>
+				<div>
+					<div class="relative inline-flex self-center">
+						<svg class="text-white bg-purple-700 absolute top-0 right-0 m-2 pointer-events-none p-2 rounded" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40px" height="40px" viewBox="0 0 38 22" version="1.1">
+							<title>F09B337F-81F6-41AC-8924-EC55BA135736</title>
+							<g id="ZahnhelferDE—Design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+								<g id="ZahnhelferDE–Icon&Asset-Download" transform="translate(-539.000000, -199.000000)" fill="#ffffff" fill-rule="nonzero">
+									<g id="Icon-/-ArrowRight-Copy-2" transform="translate(538.000000, 183.521208)">
+										<polygon id="Path-Copy" transform="translate(20.000000, 18.384776) rotate(135.000000) translate(-20.000000, -18.384776) " points="33 5.38477631 33 31.3847763 29 31.3847763 28.999 9.38379168 7 9.38477631 7 5.38477631"></polygon>
+									</g>
+								</g>
+							</g>
+						</svg>
+						<select
+							hx-get="/users/search"
+							hx-trigger="change"
+							hx-target="#slist"
+							hx-swap="outerHTML"
+							hx-headers='js:{"token": getToken()}'
+							id="key"
+							name="key"
+							class="text-2xl font-bold rounded border-2 border-purple-700 text-gray-600 h-14 w-60 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none"
+						>
+							for _, key := range keys {
+								<option value={ key.Name }>{ key.Name }</option>
+							}
+						</select>
+					</div>
+				</div>
+				<div class="w-72">
+					<div class="relative h-full w-full min-w-[200px]">
+						<input
+							hx-get="/users/search"
+							hx-trigger="keyup changed delay:1s"
+							hx-target="#slist"
+							hx-swap="outerHTML"
+							hx-headers='js:{"token": getToken()}'
+							type="number"
+							id="bpm"
+							name="bpm"
+							min="1"
+							class="peer h-full w-full rounded-[7px] border border-blue-gray-200 bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+							placeholder=" "
+						/>
+						<label class="before:content[' '] after:content[' '] flex justify-center pointer-events-none absolute left-0 -top-2 flex h-full w-full select-none text-[11px] font-bold leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-2xl    peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-pink-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-pink-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+							BPM
+						</label>
+					</div>
+				</div>
+			</div>
+			@components.SoundList(uploadedFiles, userID)
+		</div>
+	}
+}

@@ -1,0 +1,75 @@
+package components
+
+import (
+    "beep/models"
+    "fmt"
+    "strings"
+)
+
+func extractTonality(key string) string {
+    parts := strings.Split(key, " ")
+    if len(parts) >= 2 {
+        return parts[1] + " " + parts[2]
+    }
+        return key
+}
+
+script Wave(playPause string,container string ,File_Link string) {
+playPause = document.querySelector(playPause);
+var wavesurfer = WaveSurfer.create({
+    container: container,
+    waveColor: "black",
+    progressColor: "red",
+    height: 32,
+    responsive:true, 
+    hideScrollbar: true,
+    barWidth: 3,
+    barGap:1.5,
+    
+})
+wavesurfer.load(File_Link);
+
+playPause.addEventListener("click", function(e){
+    if (window.currentWaveSurfer && window.currentWaveSurfer != wavesurfer) {
+        window.currentWaveSurfer.pause();
+    }
+    wavesurfer.playPause();
+    window.currentWaveSurfer = wavesurfer;    
+});
+}
+
+templ SoundTile(product *models.Product,userID string) {
+    <div id={fmt.Sprintf("sound%s", product.Product_ID.Hex())} class="flex items-center bg-teal-600 border-2 border-teal-700 rounded-lg shadow-lg hover:shadow-md" style="height: 50px;">
+        <!-- Изображение звука -->
+        <img class="min-w-10 max-w-10 h-10 object-cover rounded-lg mx-2" alt="Sound Image" src={*product.Image} />
+
+         <button id={fmt.Sprintf("playPause_%s", product.Product_ID.Hex())} class="playPause ml-4">
+            <i class="fa fa-play text-white"></i>
+        </button>
+
+        <div id={fmt.Sprintf("audiowave_%s", product.Product_ID.Hex())} class="flex-initial w-32 ml-4"></div>
+
+        <div class="ml-4">
+            <h2 class="flex-initial w-96 text-lg font-semibold mb-2">{*product.Product_Name}</h2>
+        </div>
+         <div class="flex-initial w-32 text-lg font-semibold mb-2">
+                // <p>{extractTonality(*product.Key)}</p>
+                <p>{ *product.Key}</p>
+        </div>
+         <div class="flex-initial w-1/2 text-lg font-semibold mb-2 ">
+                 <p>{fmt.Sprintf("%d", *product.Bpm)}</p>
+        </div>
+        
+        <div class="mr-4">
+                <i class="fa fa-shopping-cart text-gray-900"
+                hx-get={fmt.Sprintf("/addtocart?id=%s&userID=%s", product.Product_ID.Hex(), userID)}
+                hx-headers='js:{"token": getToken()}'
+                hx-target="#messageContainer"
+                hx-swap="innerHTML"
+                hx-trigger="click"></i>
+            </div>
+        </div>
+        @Wave(fmt.Sprintf("#playPause_%s", product.Product_ID.Hex()),fmt.Sprintf("#audiowave_%s", product.Product_ID.Hex()), *product.File_Link)
+         <div id="messageContainer" class="absolute fixed bottom-30px left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blue-100 border border-blue-400 text-blue-700 px-4 py-2 rounded-md shadow-lg z-10 hidden">
+        </div>
+} 

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="/static/styles.css"/>
+    <script src="https://unpkg.com/htmx.org@1.9.12" integrity="sha384-ujb1lZYygJmzgSwoxRggbCHcjc0rB2XoQrxeTUQyRjrOnlCoYta87iKBWq3EsdM2" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.12/dist/ext/response-targets.js"></script>
+    
+ 
+    <title>Audio Player</title>
+</head>
+<body>
+    <h1>Audio Player</h1>
+    <div class="player-wrap">
+        <div id="audiowave"></div>
+        <div class="audio-controls">
+            <button type="button" class="bg-teal-400" >
+                <i class="fa fa-play" id="playPause"></i> 
+            </button>
+        </div>
+    </div>
+    <script src="https://unpkg.com/wavesurfer.js"></script> 
+    <script src="/audioscript.js">
+
+    </script>
+    </body>
+</html>

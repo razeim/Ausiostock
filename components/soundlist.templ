@@ -1,0 +1,14 @@
+package components
+
+import "beep/models"
+
+templ SoundList(products []models.Product, userID string) {
+    <div  id="slist" class="static grid grid-cols-1 mx-20">
+        for _, product := range products {
+            @SoundTile(&product, userID)
+        }
+    </div>
+}
+
+
+     

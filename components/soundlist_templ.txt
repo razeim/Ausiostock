@@ -1,0 +1,2 @@
+<div id=\"slist\" class=\"static grid grid-cols-1 mx-20\">
+</div>

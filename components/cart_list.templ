@@ -1,0 +1,11 @@
+package components
+
+import "beep/models"
+
+templ CartList(products []models.Product_User, userID string) {
+    <div class="grid grid-cols-3 flex flex-wrap py-4 gap-2 mx-5">
+        for _, product := range products {
+            @CartTile(&product, userID)
+        } 
+    </div>   
+}

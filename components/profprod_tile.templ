@@ -1,0 +1,80 @@
+package components
+
+import "beep/models"
+import "fmt"
+
+
+script ClosePlayer() {
+    let song = document.getElementById("song");
+    song.pause()
+    document.getElementById("audioPlayerContainer").classList.add("hidden");
+}
+
+script PlayAudio(File_Link string, name string, Image_Link string, Key string, Bpm uint64) {
+    let image = document.getElementById("image");
+    let Filename = document.getElementById("Filename");
+    let key = document.getElementById("key");
+    let bpm = document.getElementById("bpm");
+    let song = document.getElementById("song");
+    song.src = File_Link;
+    image.src = Image_Link;
+    Filename.textContent = name;
+    key.textContent = "Key: " + Key;
+    bpm.textContent = "BPM: " + Bpm.toString();
+    console.log(name);
+    song.play()
+    document.getElementById("ctrlIcon").classList.add("fa-pause");
+    document.getElementById("ctrlIcon").classList.remove("fa-play");
+    document.getElementById("audioPlayerContainer").classList.remove("hidden");
+
+}
+
+templ ProfProdTile(product *models.Product) {
+    // <div id={ fmt.Sprintf("prodid%s", product.Product_ID.Hex())} class="bg-cyan-400 flex flex-col w-1/4   rounded-md shadow-md p-4 m-4 
+    // justify-between text-center border-teal-400 ">
+    // <span class="text-sm text-blue-800 mb-4" >{ *product.Product_Name}</span>
+    // <img src={ *product.Image} alt={ *product.Image} class="w-full h-32 object cover rounded-md mb-4"/>
+    
+    // <button
+    // hx-headers='js:{"token": getToken()}'
+    // hx-delete={ fmt.Sprintf("/users/profile?id=%s",product.Product_ID.Hex())}
+    // hx-target={ fmt.Sprintf("#prodid%s", product.Product_ID.Hex())}
+    // hx-swap="delete"
+    // class="bg-wgite text-white px-2">
+    //     DElete
+    // </button>
+    // <button id="playBtn"
+    //         class="bg-green-500 text-white px-2"
+    //         onclick={ PlayAudio(*product.File_Link, *product.Product_Name, *product.Image )}>
+    //         Play
+    //     </button>
+    // </div> 
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+    <div id={ fmt.Sprintf("prodid%s", product.Product_ID.Hex())} class="text-center bg-golub/50 shadow-lg rounded p-3">
+        <div class="group relative">
+          <img class="w-full  h-64 block rounded" src={ *product.Image} alt="" />
+          <div class="absolute bg-temnosin rounded bg-opacity-0 group-hover:bg-opacity-60 w-full h-full 
+          top-0 flex items-center group-hover:opacity-100 transition justify-evenly">
+            <button class="hover:scale-110 text-white opacity-0 transform translate-y-3 group-hover:translate-y-0 
+            group-hover:opacity-100 transition"
+                    onclick={ PlayAudio(*product.File_Link, *product.Product_Name, *product.Image, *product.Key,*product.Bpm )} >
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-play-circle-fill" 
+              viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="p-5">
+          <h3 class="text-white text-lg"> { *product.Product_Name} </h3>
+            <button
+              hx-headers='js:{"token": getToken()}'
+              hx-delete={ fmt.Sprintf("/users/profile?id=%s",product.Product_ID.Hex())}
+              hx-target={ fmt.Sprintf("#prodid%s", product.Product_ID.Hex())}
+              hx-swap="delete"
+              class="bg-temnosin/50 hover:bg-krasn rounded-md text-white px-2">
+          Delete
+      </button>
+        </div>
+      </div>
+}
